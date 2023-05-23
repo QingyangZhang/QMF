@@ -35,7 +35,6 @@ We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-
 Note: Sheels for reference are provided in the folder *shells*
 
 To run our method on benchmark datasets:
-
 - task="MVSA_Single" or "food101"
 - task_type="classification"
 - model="latefusion"
