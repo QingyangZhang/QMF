@@ -32,7 +32,7 @@ Download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b3
 We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-QP0YDuthbg89D_aA?pwd=8995).
 
 ## Instructions on running experiments
-Note: Some of the sheels available for reference are provided in the folder *shells*
+Note: Sheels for reference are provided in the folder *shells*
 
 To run our method on benchmark datasets:
 
