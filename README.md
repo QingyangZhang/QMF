@@ -22,12 +22,14 @@ pip install -r requirements.txt
 
 ## Dataset preparation
 
-1. Download food101 and MVSA_Single and put them under the folder datasets
-2. Prepare the train/dev/test splits jsonl files. We follow the MMBT settings and provide a version at corresponding folders.
+1. Download [food101](https://huggingface.co/datasets/food101) and [MVSA_Single](https://www.kaggle.com/datasets/vincemarcs/mvsasingle) and put them under the folder *datasets*
+2. Prepare the train/dev/test splits jsonl files. We follow the MMBT settings and provide them at corresponding folders.
 
-## Getting glove model
-Download glove.840B.300d.txt and put it at datasets/glove_embeds
+## Glove model for Bow model (optional)
+Download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it at datasets/glove_embeds
 
+## Trained Model
+We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-QP0YDuthbg89D_aA?pwd=8995).
 
 ## Instructions on running experiments
 
