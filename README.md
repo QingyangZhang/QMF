@@ -2,7 +2,7 @@
 
 This codebase contains the implementation: 
 
-- **[Provable Dynamic Fusion for Low-Quality Multimodal Data]() (ICML2023)** 
+- **[Provable Dynamic Fusion for Low-Quality Multimodal Data](https://icml.cc/virtual/2023/poster/25229) (ICML2023)** 
 
 ## Introduction
 
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ## Dataset preparation
 
-1. Download [food101](https://huggingface.co/datasets/food101) and [MVSA_Single](https://www.kaggle.com/datasets/vincemarcs/mvsasingle) and put them in the folder *datasets*
+1. Download [food101](https://www.kaggle.com/datasets/gianmarco96/upmcfood101) and [MVSA_Single](https://www.kaggle.com/datasets/vincemarcs/mvsasingle) and put them in the folder *datasets*
 2. Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
 ## Glove model for Bow model (optional)
