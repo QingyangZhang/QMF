@@ -27,10 +27,10 @@ pip install -r requirements.txt
 
 
 Baidu Netdisk: \
-[food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg)(7.69g)\
-[MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw)(200M)\
-[nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3)(1.88g) \
-[sunrgbd](https://pan.baidu.com/s/1HiHRwuGdnFPlZ9gvGyOZEg?pwd=pv6m)(12.97g)
+[food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg) \
+[MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \
+[nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \
+[sunrgbd](https://pan.baidu.com/s/1HiHRwuGdnFPlZ9gvGyOZEg?pwd=pv6m)
 
 ## Glove model for Bow model (optional)
 Download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*
