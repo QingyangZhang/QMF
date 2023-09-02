@@ -25,6 +25,9 @@ pip install -r requirements.txt
 1. Download [food101](https://www.kaggle.com/datasets/gianmarco96/upmcfood101) and [MVSA_Single](https://www.kaggle.com/datasets/vincemarcs/mvsasingle) and put them in the folder *datasets*
 2. Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
+
+[nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) and [sunrgbd](https://pan.baidu.com/s/1hmrnVDdI_irL3hya1mG1eA?pwd=u9r6)
+
 ## Glove model for Bow model (optional)
 Download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*
 
