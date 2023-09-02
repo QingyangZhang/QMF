@@ -26,7 +26,7 @@ pip install -r requirements.txt
 2. Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
 
-Baidu Netdisk:
+Baidu Netdisk: \
 [food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg) \
 [MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \
 [nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \
