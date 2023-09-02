@@ -30,7 +30,7 @@ Baidu Netdisk: \
 [food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg) \
 [MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \
 [nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \
-[sunrgbd](https://pan.baidu.com/s/1hmrnVDdI_irL3hya1mG1eA?pwd=u9r6)
+[sunrgbd](https://pan.baidu.com/s/1HiHRwuGdnFPlZ9gvGyOZEg?pwd=pv6m)
 
 ## Glove model for Bow model (optional)
 Download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*
