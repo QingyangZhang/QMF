@@ -27,9 +27,9 @@ pip install -r requirements.txt
 
 
 Baidu Netdisk:
-[food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg) \\
-[MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \\
-[nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \\
+[food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg) \
+[MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \
+[nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \
 [sunrgbd](https://pan.baidu.com/s/1hmrnVDdI_irL3hya1mG1eA?pwd=u9r6)
 
 ## Glove model for Bow model (optional)
