@@ -15,7 +15,7 @@ from PIL import Image
 import torch
 from torch.utils.data import Dataset
 
-from mmbt.utils.utils import truncate_seq_pair, numpy_seed
+from src.utils.utils import truncate_seq_pair, numpy_seed
 
 import random
 class JsonlDataset(Dataset):

@@ -10,8 +10,8 @@
 import torch
 import torch.nn as nn
 
-from mmbt.models.bert import BertEncoder,BertClf
-from mmbt.models.image import ImageEncoder,ImageClf
+from src.models.bert import BertEncoder,BertClf
+from src.models.image import ImageEncoder,ImageClf
 
 
 class MultimodalLateFusionClf(nn.Module):

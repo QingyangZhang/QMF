@@ -10,8 +10,8 @@
 import torch
 import torch.nn as nn
 
-from mmbt.models.bow import GloveBowEncoder
-from mmbt.models.image import ImageEncoder
+from src.models.bow import GloveBowEncoder
+from src.models.image import ImageEncoder
 
 
 class MultimodalConcatBowClf(nn.Module):

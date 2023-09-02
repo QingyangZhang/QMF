@@ -11,7 +11,7 @@ import torch
 import torch.nn as nn
 from pytorch_pretrained_bert.modeling import BertModel
 
-from mmbt.models.image import ImageEncoder
+from src.models.image import ImageEncoder
 
 
 class ImageBertEmbeddings(nn.Module):
