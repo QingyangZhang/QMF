@@ -204,7 +204,7 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
 
     txt_clf_loss = nn.CrossEntropyLoss()(txt_logits, tgt)
     img_clf_loss = nn.CrossEntropyLoss()(img_logits, tgt)
-    clf_loss=txt_clf_loss+img_clf_loss
+    clf_loss=txt_clf_loss+img_clf_loss+nn.CrossEntropyLoss()(txt_img_logits,tgt)
     # txt_pred = txt_logits.argmax(dim=1)
     # img_pred = img_logits.argmax(dim=1)
     # depth_correctness = (txt_pred == tgt)
