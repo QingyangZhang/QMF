@@ -225,7 +225,7 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
 
         return loss,txt_img_logits,tgt
     else:
-        loss=clf_loss+nn.CrossEntropyLoss()(txt_img_logits,tgt)
+        loss=clf_loss
         return loss,txt_img_logits,tgt
 
 
