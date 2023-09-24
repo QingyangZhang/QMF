@@ -153,8 +153,6 @@ def rank_loss(confidence, idx, history):
     rank_target_nonzero[rank_target_nonzero == 0] = 1
     rank_input2 = rank_input2 + (rank_margin / rank_target_nonzero).reshape((-1,1))
 
-    #print(rank_target_nonzero)
-    #exit()
 
     # ranking loss
     ranking_loss = nn.MarginRankingLoss(margin=0.0)(rank_input1,
@@ -164,8 +162,6 @@ def rank_loss(confidence, idx, history):
     return ranking_loss
 def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_history=None,mode='eval'):
     txt, segment, mask, img, tgt,idx = batch
-    # print(txt)
-    # print(img)
     freeze_img = i_epoch < args.freeze_img
     freeze_txt = i_epoch < args.freeze_txt
 
@@ -190,7 +186,6 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
 
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
-        # out = model(txt, mask, segment, img)
         txt_img_logits, txt_logits, img_logits, txt_conf, img_conf=model(txt, mask, segment, img)
 
     else:
@@ -205,7 +200,6 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
         out = model(txt, mask, segment, img)
 
     tgt = tgt.cuda()
-    # loss = criterion(out, tgt)
 
     txt_clf_loss = nn.CrossEntropyLoss()(txt_logits, tgt)
     img_clf_loss = nn.CrossEntropyLoss()(img_logits, tgt)
@@ -224,8 +218,7 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
             'txt_loss':float(txt_loss[i].detach().cpu()),
             'img_weight':float(img_conf[i].detach().cpu()),
             'img_loss':float(img_loss[i].detach().cpu())
-        }     
-        # print(item)
+        }
         recoreds.append(item)
     
     if mode=='train':
@@ -263,23 +256,17 @@ def train(args):
     load_checkpoint(model, os.path.join(args.savedir, "model_best.pt"))
     model.eval()
 
-    # print('dasdasadsfa')
-
     accList=[]
     for test_name, test_loader in test_loaders.items():
-        # print('asdasfadfwww')
         test_metrics = model_eval(
             np.inf, test_loader, model, args, criterion, store_preds=True
         )
-
-        # print('afdewrwer3232324')
         log_metrics(f"Test - {test_name}", test_metrics, args, logger)
         accList.append(test_metrics['acc'])
 
     info = f"name:{args.name} seed:{args.seed} noise:{args.noise} test_acc: {accList[0]:0.5f}\n"
     with open(f"eval_data/{args.task}_result_info.txt", "a+") as f:
         f.write(info)
-
 
     result_json={
         'name':args.name,
@@ -300,9 +287,6 @@ def train(args):
         exist_json.append(result_json)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(exist_json, f, ensure_ascii=False, indent=2)
-    
-    # with open(f'eval_data/weight_loss_{args.noise}.json', 'w', encoding='utf-8') as f:
-    #         json.dump(recoreds, f, ensure_ascii=False, indent=2)
             
 def cli_main():
     parser = argparse.ArgumentParser(description="Train Models")

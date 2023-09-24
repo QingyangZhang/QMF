@@ -185,39 +185,11 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
         out = model(txt, mask, segment, img)
-    
-    
-    
-    
 
     tgt = tgt.cuda()
-    
-    
-    # txt_loss = nn.CrossEntropyLoss(reduction='none')(txt_logits, tgt).detach()
-    # img_loss = nn.CrossEntropyLoss(reduction='none')(img_logits, tgt).detach()
-    
-    # logits_outs.append(out.detach().cpu().numpy())
-    # txt_outs.append(txt_logits.detach().cpu().numpy())
-    # img_outs.append(img_logits.detach().cpu().numpy())
-    
-    # for i in range(len(img)):
-    #     item={
-    #         'txt_weight':float(txt_conf[i].detach().cpu()),
-    #         'txt_loss':float(txt_loss[i].detach().cpu()),
-    #         'img_weight':float(img_conf[i].detach().cpu()),
-    #         'img_loss':float(img_loss[i].detach().cpu()),
-    #     }
-    #
-    #     # print(item)
-    #     recoreds.append(item)
-        
     loss = criterion(out, tgt)
-    
-    
-        
-        
-    return loss, out, tgt
 
+    return loss, out, tgt
 
 def train(args):
 
@@ -273,16 +245,6 @@ def train(args):
         exist_json.append(result_json)
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(exist_json, f, ensure_ascii=False, indent=2)
-
-    
-
-    
-    # np.savez(f'eval_data/late_fusion_out_{args.noise}.npz',logits_outs=np.concatenate(logits_outs,axis=0), \
-    #          txt_outs=np.concatenate(txt_outs,axis=0),img_outs=np.concatenate(img_outs,axis=0))
-    
-    # with open(f'eval_data/late_fusion_weight_loss_{args.noise}.json', 'w', encoding='utf-8') as f:
-    #         json.dump(recoreds, f, ensure_ascii=False, indent=2)
-            
 def cli_main():
     parser = argparse.ArgumentParser(description="Train Models")
     get_args(parser)

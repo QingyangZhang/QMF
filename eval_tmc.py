@@ -168,7 +168,6 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
 
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
-        # out = model(txt, mask, segment, img)
         out, txt_logits, img_logits, txt_conf, img_conf=model(txt, mask, segment, img)
 
     elif args.model == "tmc":
@@ -217,12 +216,10 @@ def train(args):
 
     accList=[]
     for test_name, test_loader in test_loaders.items():
-        # print('asdasfadfwww')
         test_metrics = model_eval(
             np.inf, test_loader, model, args, criterion, store_preds=True
         )
 
-        # print('afdewrwer3232324')
         log_metrics(f"Test - {test_name}", test_metrics, args, logger)
         accList.append(test_metrics['acc'])
 

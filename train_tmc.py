@@ -117,7 +117,8 @@ def model_eval(i_epoch, data, model, args, criterion, store_preds=False):
             if args.task_type == "multilabel":
                 pred = torch.sigmoid(out).cpu().detach().numpy() > 0.5
             else:
-                pred = torch.nn.functional.softmax(out, dim=1).argmax(dim=1).cpu().detach().numpy()
+                # pred = torch.nn.functional.softmax(out, dim=1).argmax(dim=1).cpu().detach().numpy()
+                pred = out.argmax(dim=1).cpu().detach().numpy()
 
             preds.append(pred)
             tgt = tgt.cpu().detach().numpy()
@@ -272,9 +273,9 @@ def train(args):
             args.savedir,
         )
 
-        # if n_no_improve >= args.patience:
-        #     logger.info("No improvement. Breaking out of loop.")
-        #     break
+        if n_no_improve >= args.patience:
+            logger.info("No improvement. Breaking out of loop.")
+            break
 
     load_checkpoint(model, os.path.join(args.savedir, "model_best.pt"))
     model.eval()

@@ -26,11 +26,8 @@ def KL(alpha, c):
 def ce_loss(p, alpha, c, global_step, annealing_step):
     S = torch.sum(alpha, dim=1, keepdim=True)
     E = alpha - 1
-    
-    # print(p.shape)
-    # exit(1)
+
     label = F.one_hot(p, num_classes=c)
-    # label=p
     
     A = torch.sum(label * (torch.digamma(S) - torch.digamma(alpha)), dim=1, keepdim=True)
 

@@ -148,9 +148,6 @@ def rank_loss(confidence, idx, history):
     rank_target_nonzero[rank_target_nonzero == 0] = 1
     rank_input2 = rank_input2 + (rank_margin / rank_target_nonzero).reshape((-1,1))
 
-    #print(rank_target_nonzero)
-    #exit()
-
     # ranking loss
     ranking_loss = nn.MarginRankingLoss(margin=0.0)(rank_input1,
                                         rank_input2,
@@ -185,7 +182,6 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
 
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
-        # out = model(txt, mask, segment, img)
         txt_img_logits, txt_logits, img_logits, txt_conf, img_conf=model(txt, mask, segment, img)
 
     else:
@@ -200,15 +196,10 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
         out = model(txt, mask, segment, img)
 
     tgt = tgt.cuda()
-    # loss = criterion(out, tgt)
 
     txt_clf_loss = nn.CrossEntropyLoss()(txt_logits, tgt)
     img_clf_loss = nn.CrossEntropyLoss()(img_logits, tgt)
     clf_loss=txt_clf_loss+img_clf_loss+nn.CrossEntropyLoss()(txt_img_logits,tgt)
-    # txt_pred = txt_logits.argmax(dim=1)
-    # img_pred = img_logits.argmax(dim=1)
-    # depth_correctness = (txt_pred == tgt)
-    # rgb_correctness = (img_pred == tgt)
 
     txt_loss = nn.CrossEntropyLoss(reduction='none')(txt_logits, tgt).detach()
     img_loss = nn.CrossEntropyLoss(reduction='none')(img_logits, tgt).detach()
@@ -237,9 +228,8 @@ def train(args):
 
     train_loader, val_loader, test_loaders = get_data_loaders(args)
 
-    # print('adsasd')
     model = get_model(args)
-    # print('1341232')
+
     criterion = get_criterion(args)
     optimizer = get_optimizer(model, args)
     scheduler = get_scheduler(optimizer, args)
@@ -312,9 +302,6 @@ def train(args):
             args.savedir,
         )
 
-        # if n_no_improve >= args.patience:
-        #     logger.info("No improvement. Breaking out of loop.")
-        #     break
 
     load_checkpoint(model, os.path.join(args.savedir, "model_best.pt"))
     model.eval()
