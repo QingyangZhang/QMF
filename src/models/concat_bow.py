@@ -10,8 +10,8 @@
 import torch
 import torch.nn as nn
 
-from src.models.bow import GloveBowEncoder
-from src.models.image import ImageEncoder
+from .bow import GloveBowEncoder
+from .image import ImageEncoder
 
 
 class MultimodalConcatBowClf(nn.Module):

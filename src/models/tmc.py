@@ -10,8 +10,8 @@
 import torch
 import torch.nn as nn
 
-from src.models.bert import BertEncoder,BertClf
-from src.models.image import ImageEncoder,ImageClf
+from .bert import BertEncoder,BertClf
+from .image import ImageEncoder,ImageClf
 import torch.nn.functional as F
 def KL(alpha, c):
     beta = torch.ones((1, c)).cuda()

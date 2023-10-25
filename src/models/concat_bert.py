@@ -10,8 +10,8 @@
 import torch
 import torch.nn as nn
 
-from src.models.bert import BertEncoder
-from src.models.image import ImageEncoder
+from .bert import BertEncoder
+from .image import ImageEncoder
 
 
 class MultimodalConcatBertClf(nn.Module):
