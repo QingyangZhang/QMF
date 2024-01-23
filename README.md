@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 
 Baidu Netdisk: \
-[food101]([https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg?pwd=5jy4)) \
+[food101](https://pan.baidu.com/s/1Tj7jRptTt2V6bxfwrvDSQg?pwd=5jy4) \
 [MVSA_Single](https://pan.baidu.com/s/1URVP8AifWuwIFy6v0uAPOA?pwd=18fw) \
 [nyud2](https://pan.baidu.com/s/1214yDgGeOIbSsWly2MLnuA?pwd=xhq3) \
 [sunrgbd](https://pan.baidu.com/s/1HiHRwuGdnFPlZ9gvGyOZEg?pwd=pv6m)
