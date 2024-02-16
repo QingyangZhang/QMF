@@ -78,10 +78,10 @@ python train.py --batch_sz 16 --gradient_accumulation_steps 40  \
 
 ## Cite
 ```
-@article{zhang2023provable,
+@inproceedings{zhang2023provable,
   title={Provable Dynamic Fusion for Low-Quality Multimodal Data},
   author={Zhang, Qingyang and Wu, Haitao and Zhang, Changqing and Hu, Qinghua and Fu, Huazhu and Zhou, Joey Tianyi and Peng, Xi},
-  journal={arXiv preprint arXiv:2306.02050},
+  booktitle={International Conference on Machine Learning},
   year={2023}
 }
 ```
