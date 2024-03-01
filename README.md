@@ -89,13 +89,10 @@ If our QMF or the idea of dynamic multimodal fusion methods are helpful in your 
 
 The code is inspired by [TMC: Trusted Multi-View Classification](https://github.com/hanmenghan/TMC) and [Confidence-Aware Learning for Deep Neural Networks](https://github.com/daintlab/confidence-aware-learning).
 
-For any additional questions, feel free to email qingyangzhang@tju.edu.cn.
-
 ## Related works
 
 There are many interesting works related to this paper:
 
-- [Provable Dynamic Fusion for Low-Quality Multimodal Data](https://arxiv.org/abs/2306.02050)
 - [Uncertainty-based Fusion Netwok for Automatic Skin Lesion Diagnosis](https://ieeexplore.ieee.org/document/9994932/)
 - [Uncertainty Estimation for Multi-view Data: The Power of Seeing the Whole Picture](https://arxiv.org/abs/2210.02676)
 - [Reliable Multimodality Eye Disease Screening via Mixture of Student's t Distributions](https://arxiv.org/abs/2303.09790)
@@ -109,3 +106,5 @@ There are many interesting works related to this paper:
 - [EvidenceCap: Towards trustworthy medical image segmentation via evidential identity cap](https://www.arxiv-vanity.com/papers/2301.00349/)
 - [Federated Uncertainty-Aware Aggregation for Fundus Diabetic Retinopathy Staging](https://arxiv.org/abs/2303.13033)
 - [Multimodal dynamics: Dynamical fusion for trustworthy multimodal classification](https://openaccess.thecvf.com/content/CVPR2022/papers/Han_Multimodal_Dynamics_Dynamical_Fusion_for_Trustworthy_Multimodal_Classification_CVPR_2022_paper.pdf)
+
+For any additional questions, feel free to email qingyangzhang@tju.edu.cn.
