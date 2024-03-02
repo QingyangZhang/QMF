@@ -2,8 +2,8 @@
 
 This is the official implementation for [Provable Dynamic Fusion for Low-Quality Multimodal Data](https://icml.cc/virtual/2023/poster/25229) (ICML 2023) by Qingyang Zhang, Haitao Wu, Changqing Zhang , Qinghua Hu, Huazhu Fu, Joey Tianyi Zhou and Xi Peng
 
-- This paper provides a theoretical framework to understand the advantage and criterion of robust multimodal fusion.
-- Motivated by the above analysis, we propose a novel dynamic multimodal fusion method termed Quality-aware Multimodal Fusion (QMF), which serves as a realization for provably better generalization ability.
+- This paper provides a theoretical framework to understand the criterion of robust dynamic multimodal fusion.
+- A novel dynamic multimodal fusion method termed Quality-aware Multimodal Fusion (QMF) is proposed for provably better generalization ability.
 
 
 <p align="center">
