@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
   Step 2: Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
-  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*.
+  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*. For bert model, you can download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1INsaOg6_LtvlaJtQuPyn3_wgsCDZZKwU/view?usp=sharing) ) and put in the root folder *bert-base-uncased/*.
 
 - RGBD Scene Recognition:
 
@@ -34,6 +34,8 @@ Feel free to use Baidu Netdisk for [food101](https://pan.baidu.com/s/1Tj7jRptTt2
 
 ## Trained Model
 We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-QP0YDuthbg89D_aA?pwd=8995).
+
+Pretrained bert model at [Baidu Netdisk](https://pan.baidu.com/s/1TMg1uiMTZNxKT1O62wgfvg?pwd=zu13).
 
 ## Usage Example: Text-Image Classification
 Note: Sheels for reference are provided in the folder *shells*
