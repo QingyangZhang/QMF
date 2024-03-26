@@ -172,7 +172,7 @@ def train(args):
     val_transforms.append(transforms.Normalize(mean=mean, std=std))
 
     train_loader = DataLoader(
-        oodConcDataset(args, data_dir=os.path.join(args.data_path, 'train'), transform=transforms.Compose(train_transforms)),
+        AlignedConcDataset(args, data_dir=os.path.join(args.data_path, 'train'), transform=transforms.Compose(train_transforms)),
         batch_size=args.batch_sz,
         shuffle=True,
         num_workers=args.n_workers)
