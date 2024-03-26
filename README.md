@@ -2,8 +2,8 @@
 
 This is the official implementation for [Provable Dynamic Fusion for Low-Quality Multimodal Data](https://icml.cc/virtual/2023/poster/25229) (ICML 2023) by Qingyang Zhang, Haitao Wu, Changqing Zhang , Qinghua Hu, Huazhu Fu, Joey Tianyi Zhou and Xi Peng
 
-- This paper provides a theoretical framework to understand the advantage and criterion of robust multimodal fusion.
-- Motivated by the above analysis, we propose a novel dynamic multimodal fusion method termed Quality-aware Multimodal Fusion (QMF), which serves as a realization for provably better generalization ability.
+- This paper provides a theoretical framework to understand the criterion of robust dynamic multimodal fusion.
+- A novel dynamic multimodal fusion method termed Quality-aware Multimodal Fusion (QMF) is proposed for provably better generalization ability.
 
 
 <p align="center">
@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
   Step 2: Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
-  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*.
+  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*. For bert model, you can download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1INsaOg6_LtvlaJtQuPyn3_wgsCDZZKwU/view?usp=sharing) ) and put in the root folder *bert-base-uncased/*.
 
 - RGBD Scene Recognition:
 
@@ -35,6 +35,8 @@ Feel free to use Baidu Netdisk for [food101](https://pan.baidu.com/s/1Tj7jRptTt2
 ## Trained Model
 We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-QP0YDuthbg89D_aA?pwd=8995).
 
+Pretrained bert model at [Baidu Netdisk](https://pan.baidu.com/s/1TMg1uiMTZNxKT1O62wgfvg?pwd=zu13).
+
 ## Usage Example: Text-Image Classification
 Note: Sheels for reference are provided in the folder *shells*
 
@@ -44,7 +46,7 @@ To run our method on benchmark datasets:
 - model="latefusion"
 - name=$task"_"$model"_model_run_df_$i"
 ```
-python train_df.py --batch_sz 16 --gradient_accumulation_steps 40  \
+python train_qmf.py --batch_sz 16 --gradient_accumulation_steps 40  \
     --savedir ./saved/$task --name $name  --data_path ./datasets/ \
     --task $task --task_type $task_type  --model $model --num_image_embeds 3 \
     --freeze_txt 5 --freeze_img 3   --patience 5 --dropout 0.1 --lr 5e-05 --warmup 0.1 --max_epochs 100 --seed $i --df true --noise 0.0
@@ -89,13 +91,10 @@ If our QMF or the idea of dynamic multimodal fusion methods are helpful in your 
 
 The code is inspired by [TMC: Trusted Multi-View Classification](https://github.com/hanmenghan/TMC) and [Confidence-Aware Learning for Deep Neural Networks](https://github.com/daintlab/confidence-aware-learning).
 
-For any additional questions, feel free to email qingyangzhang@tju.edu.cn.
-
 ## Related works
 
 There are many interesting works related to this paper:
 
-- [Provable Dynamic Fusion for Low-Quality Multimodal Data](https://arxiv.org/abs/2306.02050)
 - [Uncertainty-based Fusion Netwok for Automatic Skin Lesion Diagnosis](https://ieeexplore.ieee.org/document/9994932/)
 - [Uncertainty Estimation for Multi-view Data: The Power of Seeing the Whole Picture](https://arxiv.org/abs/2210.02676)
 - [Reliable Multimodality Eye Disease Screening via Mixture of Student's t Distributions](https://arxiv.org/abs/2303.09790)
@@ -109,3 +108,5 @@ There are many interesting works related to this paper:
 - [EvidenceCap: Towards trustworthy medical image segmentation via evidential identity cap](https://www.arxiv-vanity.com/papers/2301.00349/)
 - [Federated Uncertainty-Aware Aggregation for Fundus Diabetic Retinopathy Staging](https://arxiv.org/abs/2303.13033)
 - [Multimodal dynamics: Dynamical fusion for trustworthy multimodal classification](https://openaccess.thecvf.com/content/CVPR2022/papers/Han_Multimodal_Dynamics_Dynamical_Fusion_for_Trustworthy_Multimodal_Classification_CVPR_2022_paper.pdf)
+
+For any additional questions, feel free to email qingyangzhang@tju.edu.cn.
