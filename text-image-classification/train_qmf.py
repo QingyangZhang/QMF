@@ -43,7 +43,7 @@ def get_args(parser):
     parser.add_argument("--lr_patience", type=int, default=2)
     parser.add_argument("--max_epochs", type=int, default=100)
     parser.add_argument("--max_seq_len", type=int, default=512)
-    parser.add_argument("--model", type=str, default="bow", choices=["bow", "img", "bert", "concatbow", "concatbert", "mmbt","latefusion"])
+    parser.add_argument("--model", type=str, default="bow", choices=["bow", "img", "bert", "concatbow", "concatbert", "mmbt", "latefusion"])
     parser.add_argument("--n_workers", type=int, default=12)
     parser.add_argument("--name", type=str, default="nameless")
     parser.add_argument("--num_image_embeds", type=int, default=1)
@@ -156,8 +156,6 @@ def rank_loss(confidence, idx, history):
     return ranking_loss
 def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_history=None,mode='eval'):
     txt, segment, mask, img, tgt,idx = batch
-    # print(txt)
-    # print(img)
     freeze_img = i_epoch < args.freeze_img
     freeze_txt = i_epoch < args.freeze_txt
 
@@ -177,12 +175,11 @@ def model_forward(i_epoch, model, args, criterion, batch,txt_history=None,img_hi
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
         out = model(txt, mask, segment, img)
-
+    # QMF use the same backbone with late fusion, the only difference are dynamic fusion weights
     elif args.model == "latefusion":
-
         txt, img = txt.cuda(), img.cuda()
         mask, segment = mask.cuda(), segment.cuda()
-        txt_img_logits, txt_logits, img_logits, txt_conf, img_conf=model(txt, mask, segment, img)
+        txt_img_logits, txt_logits, img_logits, txt_conf, img_conf = model(txt, mask, segment, img)
 
     else:
         assert args.model == "mmbt"

@@ -16,7 +16,7 @@ from torch.utils.data import DataLoader
 
 def get_args(parser):
     parser.add_argument("--batch_sz", type=int, default=32)
-    parser.add_argument("--data_path", type=str, default="/media/zhangqingyang/dataset/mm/nyud2_trainvaltest/")
+    parser.add_argument("--data_path", type=str, default="/media/zhangqingyang/dataset/nyud2/nyud2_trainvaltest")
     parser.add_argument("--LOAD_SIZE", type=int, default=256)
     parser.add_argument("--FINE_SIZE", type=int, default=224)
     parser.add_argument("--dropout", type=float, default=0.1)
@@ -91,8 +91,8 @@ def model_forward_train(i_epoch, model, args, batch, depth_history, rgb_history)
     depth_pred = depth_logits.argmax(dim=1)
     rgb_pred = rgb_logits.argmax(dim=1)
 
-    depth_correctness = (depth_pred == tgt)#*ID_2
-    rgb_correctness = (rgb_pred == tgt)#*ID_1
+    depth_correctness = (depth_pred == tgt)
+    rgb_correctness = (rgb_pred == tgt)
     depth_loss = nn.CrossEntropyLoss(reduction='none')(depth_logits, tgt).detach()
     rgb_loss = nn.CrossEntropyLoss(reduction='none')(rgb_logits, tgt).detach()
 
@@ -166,9 +166,9 @@ def train(args):
     train_transforms.append(transforms.RandomHorizontalFlip())
     train_transforms.append(transforms.ToTensor())
     train_transforms.append(transforms.Normalize(mean=mean, std=std))
+
     val_transforms = list()
     val_transforms.append(transforms.Resize((args.FINE_SIZE, args.FINE_SIZE)))
-    # val_transforms.append(transforms.CenterCrop((args.FINE_SIZE, args.FINE_SIZE)))
     val_transforms.append(transforms.ToTensor())
     val_transforms.append(transforms.Normalize(mean=mean, std=std))
 
@@ -178,12 +178,14 @@ def train(args):
         batch_size=args.batch_sz,
         shuffle=True,
         num_workers=args.n_workers)
+
     test_loader = DataLoader(
         AlignedConcDataset(args, data_dir=os.path.join(args.data_path, 'test'), 
         transform=transforms.Compose(val_transforms)),
         batch_size=args.batch_sz,
         shuffle=False,
         num_workers=args.n_workers)
+        
     model = QMF(args)
     optimizer = get_optimizer(model, args)
     scheduler = get_scheduler(optimizer, args)

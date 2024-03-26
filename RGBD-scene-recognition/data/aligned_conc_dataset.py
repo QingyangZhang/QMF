@@ -49,9 +49,9 @@ class AlignedConcDataset:
             B = AB_conc.crop((w2, 0, w, h))
 
         if self.labeled:
-            sample = {'A': A, 'B': B, 'img_name': img_name, 'label': label}
+            sample = {'A': A, 'B': B, 'img_name': img_name, 'label': label, 'idx': index}
         else:
-            sample = {'A': A, 'B': B, 'img_name': img_name}
+            sample = {'A': A, 'B': B, 'img_name': img_name, 'idx': index}
 
         if self.transform:
             sample['A'] = self.transform(sample['A'])
