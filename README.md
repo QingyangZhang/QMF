@@ -37,6 +37,8 @@ We provide the trained models at [Baidu Netdisk](https://pan.baidu.com/s/1fPltY-
 
 Pretrained bert model at [Baidu Netdisk](https://pan.baidu.com/s/1TMg1uiMTZNxKT1O62wgfvg?pwd=zu13).
 
+We use the pytorch official pretrained resnet18 in RGB-D classification tasks, which can be downloaded from [this link](https://s3.amazonaws.com/pytorch/models/resnet18-5c106cde.pth).
+
 ## Usage Example: Text-Image Classification
 Note: Sheels for reference are provided in the folder *shells*
 
