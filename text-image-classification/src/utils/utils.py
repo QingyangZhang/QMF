@@ -159,3 +159,41 @@ class History(object):
         margin = torch.from_numpy(margin).float().cuda()
 
         return target, margin
+
+
+def add_noise(
+    input_data: torch.FloatTensor,
+    timesteps: torch.IntTensor,
+    seed: int = None,
+    num_training_steps=1000,
+    device: torch.device =None,
+    beta_start: float = 0.00085,
+    beta_end: float = 0.0120
+) -> torch.FloatTensor:
+    
+    # Initialize random number generator according to the seed specified
+    generator = torch.Generator(device=device)
+    if seed is not None:
+        generator.manual_seed(seed)
+    
+    # (num_training_steps)
+    betas = torch.linspace(beta_start ** 0.5, beta_end ** 0.5, num_training_steps, dtype=torch.float32) ** 2
+    alphas = 1.0 - betas
+    # returns the cumulative product of elements of input in the dimension dim. -> (num_training_steps) 
+    alphas_cumprod = torch.cumprod(alphas, dim=0)
+    alphas_cumprod = alphas_cumprod.to(device=input_data.device, dtype=input_data.dtype)
+    timesteps = timesteps.to(input_data.device)
+
+    sqrt_alpha_prod = alphas_cumprod[timesteps] ** 0.5
+    sqrt_alpha_prod = sqrt_alpha_prod.flatten()
+    while len(sqrt_alpha_prod.shape) < len(input_data.shape):
+        sqrt_alpha_prod = sqrt_alpha_prod.unsqueeze(-1)
+
+    sqrt_one_minus_alpha_prod = (1 - alphas_cumprod[timesteps]) ** 0.5
+    sqrt_one_minus_alpha_prod = sqrt_one_minus_alpha_prod.flatten()
+    while len(sqrt_one_minus_alpha_prod.shape) < len(input_data.shape):
+        sqrt_one_minus_alpha_prod = sqrt_one_minus_alpha_prod.unsqueeze(-1)
+
+    noise = torch.randn(input_data.shape, generator=generator, device=input_data.device, dtype=input_data.dtype)
+    noisy_samples = sqrt_alpha_prod * input_data + sqrt_one_minus_alpha_prod * noise
+    return noisy_samples
