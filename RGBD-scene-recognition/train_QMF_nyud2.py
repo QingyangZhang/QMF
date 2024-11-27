@@ -15,8 +15,8 @@ from torch.utils.data import DataLoader
 
 
 def get_args(parser):
-    parser.add_argument("--batch_sz", type=int, default=32)
-    parser.add_argument("--data_path", type=str, default="/media/zhangqingyang/dataset/nyud2/nyud2_trainvaltest")
+    parser.add_argument("--batch_sz", type=int, default=256)
+    parser.add_argument("--data_path", type=str, default="./dataset/nyud2_trainvaltest")
     parser.add_argument("--LOAD_SIZE", type=int, default=256)
     parser.add_argument("--FINE_SIZE", type=int, default=224)
     parser.add_argument("--dropout", type=float, default=0.1)
@@ -31,7 +31,7 @@ def get_args(parser):
     parser.add_argument("--lr_factor", type=float, default=0.3)
     parser.add_argument("--lr_patience", type=int, default=10)
     parser.add_argument("--max_epochs", type=int, default=500)
-    parser.add_argument("--n_workers", type=int, default=4)
+    parser.add_argument("--n_workers", type=int, default=8)
     parser.add_argument("--name", type=str, default="s")
     parser.add_argument("--num_image_embeds", type=int, default=1)
     parser.add_argument("--patience", type=int, default=20)
@@ -41,7 +41,7 @@ def get_args(parser):
     parser.add_argument("--annealing_epoch", type=int, default=10)
     parser.add_argument("--lamb", type=float, default=0.1)
     parser.add_argument("--CONTENT_MODEL_PATH", type=str,
-                        default="/media/zhangqingyang/DF/checkpoint/resnet18_pretrained.pth")
+                        default="./checkpoint/resnet18_pretrained.pth")
 
 
 def get_optimizer(model, args):
@@ -55,6 +55,8 @@ def get_scheduler(optimizer, args):
     )
 
 def rank_loss(confidence, idx, history):
+    confidence = confidence.squeeze()
+    assert len(confidence.shape) == 1
     # make input pair
     rank_input1 = confidence
     rank_input2 = torch.roll(confidence, -1)
@@ -81,7 +83,6 @@ def model_forward_train(i_epoch, model, args, batch, depth_history, rgb_history)
 
     rgb, depth, tgt = rgb.cuda(), depth.cuda(), tgt.cuda()
     depth_rgb_logits, rgb_logits, depth_logits, rgb_conf, depth_conf = model(rgb, depth)
-    
 
     depth_clf_loss = nn.CrossEntropyLoss()(depth_logits, tgt)
     rgb_clf_loss = nn.CrossEntropyLoss()(rgb_logits, tgt)

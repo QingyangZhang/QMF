@@ -16,8 +16,8 @@ from torch.utils.data import DataLoader
 
 
 def get_args(parser):
-    parser.add_argument("--batch_sz", type=int, default=32)
-    parser.add_argument("--data_path", type=str, default="/media/zhangqingyang/dataset/mm/sun_rgbd/")
+    parser.add_argument("--batch_sz", type=int, default=128)
+    parser.add_argument("--data_path", type=str, default="./dataset/sun_rgbd/")
     parser.add_argument("--LOAD_SIZE", type=int, default=256)
     parser.add_argument("--FINE_SIZE", type=int, default=224)
     parser.add_argument("--dropout", type=float, default=0.1)
@@ -31,7 +31,7 @@ def get_args(parser):
     parser.add_argument("--lr_factor", type=float, default=0.3)
     parser.add_argument("--lr_patience", type=int, default=10)
     parser.add_argument("--max_epochs", type=int, default=500)
-    parser.add_argument("--n_workers", type=int, default=4)
+    parser.add_argument("--n_workers", type=int, default=8)
     parser.add_argument("--name", type=str, default="s")
     parser.add_argument("--num_image_embeds", type=int, default=1)
     parser.add_argument("--patience", type=int, default=20)
@@ -41,7 +41,7 @@ def get_args(parser):
     parser.add_argument("--annealing_epoch", type=int, default=10)
     parser.add_argument("--lamb", type=float, default=1)
     parser.add_argument("--CONTENT_MODEL_PATH", type=str,
-                        default="/media/zhangqingyang/QMF/checkpoint/resnet18_pretrained.pth")
+                        default="./checkpoint/resnet18_pretrained.pth")
 
 
 def get_optimizer(model, args):
@@ -55,6 +55,8 @@ def get_scheduler(optimizer, args):
     )
 
 def rank_loss(confidence, idx, history):
+    confidence = confidence.squeeze()
+    assert len(confidence.shape) == 1
     # make input pair
     rank_input1 = confidence
     rank_input2 = torch.roll(confidence, -1)
