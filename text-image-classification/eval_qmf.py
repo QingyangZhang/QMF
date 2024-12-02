@@ -265,6 +265,7 @@ def train(args):
         accList.append(test_metrics['acc'])
 
     info = f"name:{args.name} seed:{args.seed} noise:{args.noise} test_acc: {accList[0]:0.5f}\n"
+    os.makedirs('eval_data', exist_ok=True)
     with open(f"eval_data/{args.task}_result_info.txt", "a+") as f:
         f.write(info)
 
