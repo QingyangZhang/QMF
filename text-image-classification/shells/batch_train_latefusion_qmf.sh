@@ -4,7 +4,7 @@ do
   task="MVSA_Single"
   task_type="classification"
   model="latefusion"
-  name=$task"_"$model"_model_run_df_$i"
+  name=$task"_"$model"_model_run_qmf_$i"
   echo $name seed: $i
   CUDA_VISIBLE_DEVICES=7  python train_qmf.py --batch_sz 16 --gradient_accumulation_steps 40  \
     --savedir ./saved/$task --name $name  --data_path ./datasets/ \
