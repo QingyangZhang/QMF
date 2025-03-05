@@ -1,5 +1,7 @@
 # Provable Dynamic Fusion for Low-Quality Multimodal Data
 
+![visitor count](https://komarev.com/ghpvc/?username=QingyangZhang&repo=QMF)
+
 This is the official implementation for [Provable Dynamic Fusion for Low-Quality Multimodal Data](https://icml.cc/virtual/2023/poster/25229) (ICML 2023) by Qingyang Zhang, Haitao Wu, Changqing Zhang , Qinghua Hu, Huazhu Fu, Joey Tianyi Zhou and Xi Peng
 
 - This paper provides a theoretical framework to understand the criterion of robust dynamic multimodal fusion.
