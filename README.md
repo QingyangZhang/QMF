@@ -26,7 +26,7 @@ pip install -r requirements.txt
 
   Step 2: Prepare the train/dev/test splits jsonl files. We follow the [MMBT](https://github.com/facebookresearch/mmbt) settings and provide them in corresponding folders.
 
-  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*. For bert model, you can download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1INsaOg6_LtvlaJtQuPyn3_wgsCDZZKwU/view?usp=sharing) ) and put in the root folder *bert-base-uncased/*.
+  Step 3 (optional): If you want use Glove model for Bow model, you can download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and put it in the folder *datasets/glove_embeds*. For bert model, you can download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view?usp=sharing) ) and put in the root folder *bert-base-uncased/*.
 
 - RGBD Scene Recognition:
 
