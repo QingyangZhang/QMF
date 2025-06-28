@@ -19,7 +19,7 @@ from src.utils.utils import truncate_seq_pair, numpy_seed
 
 import random
 class JsonlDataset(Dataset):
-    def __init__(self, data_path, tokenizer, transforms, vocab, args):
+    def __init__(self, data_path, tokenizer, transforms, mode, vocab, args):
         self.data = [json.loads(l) for l in open(data_path)]
         self.data_dir = os.path.dirname(data_path)
         self.tokenizer = tokenizer
@@ -27,6 +27,7 @@ class JsonlDataset(Dataset):
         self.vocab = vocab
         self.n_classes = len(args.labels)
         self.text_start_token = ["[CLS]"] if args.model != "mmbt" else ["[SEP]"]
+        self.mode = mode
 
         with numpy_seed(0):
             for row in self.data:
@@ -43,10 +44,7 @@ class JsonlDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, index):
-
-
-
-
+        
         if self.args.task == "vsnli":
             sent1 = self.tokenizer(self.data[index]["sentence1"])
             sent2 = self.tokenizer(self.data[index]["sentence2"])
@@ -56,9 +54,10 @@ class JsonlDataset(Dataset):
                 [torch.zeros(2 + len(sent1)), torch.ones(len(sent2) + 1)]
             )
         else:
-
             _ = self.tokenizer(self.data[index]["text"])
-            if self.args.noise > 0.0:
+
+            # add noise to text modality (noted that we only add noise to the test set)
+            if self.args.noise > 0.0 and self.mode="test":
                 p = [0.5, 0.5]
                 flag = np.random.choice([0, 1], p=p)
                 if flag:
