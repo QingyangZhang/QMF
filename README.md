@@ -42,18 +42,6 @@ pip install -r requirements.txt
       * **Glove:** For the Bow model, download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and place it in the `datasets/glove_embeds` folder.
       * **BERT:** For the Bert model, download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view?usp=sharing)) and place it in the root folder `bert-base-uncased/`.
 
-> Make sure you have the following folder structure:
-
-text-image-classification/
-└── datasets/
-├── food101/
-│ ├── images/
-│ └── meta/
-├── MVSA_Single/
-│ ├── data/1.jpg, 1.txt, 2.jpg...
-│ └── dev.jsonl
-│ └── test.jsonl
-│ └── train.jsonl
 
 
 ### RGBD Scene Recognition
