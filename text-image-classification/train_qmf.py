@@ -43,7 +43,7 @@ def get_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--lr", type=float, default=5e-5, help="Learning rate")
     parser.add_argument("--lr_factor", type=float, default=0.5, help="Learning rate reduction factor")
     parser.add_argument("--lr_patience", type=int, default=2, help="Patience for learning rate scheduler")
-    parser.add_argument("--max_epochs", type=int, default=100, help="Maximum training epochs")
+    parser.add_argument("--max_epochs", type=int, default=0, help="Maximum training epochs")
     parser.add_argument("--max_seq_len", type=int, default=512, help="Maximum sequence length")
     parser.add_argument("--model", type=str, default="latefusion", choices=["bow", "img", "bert", "concatbow", "concatbert", "mmbt", "latefusion"], help="Model architecture")
     parser.add_argument("--n_workers", type=int, default=16, help="Number of data loader workers")
@@ -57,7 +57,7 @@ def get_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--warmup", type=float, default=0.1, help="Warmup proportion for BERT training")
     parser.add_argument("--weight_classes", type=int, default=1, help="Apply class weighting")
     parser.add_argument("--df", type=bool, default=True, help="Use dynamic fusion (if applicable)")
-    parser.add_argument("--noise", type=float, default=0.5, help="Noise level for testing")
+    parser.add_argument("--noise_level", type=float, default=0.5, help="Noise level for testing")
     parser.add_argument("--noise_type", type=str, default='Gaussian', help="Noise type for testing")
 
 
