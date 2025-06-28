@@ -57,7 +57,7 @@ class JsonlDataset(Dataset):
             _ = self.tokenizer(self.data[index]["text"])
 
             # add noise to text modality (noted that we only add noise to the test set)
-            if self.args.noise > 0.0 and self.mode="test":
+            if self.args.noise > 0.0 and self.mode=="test":
                 p = [0.5, 0.5]
                 flag = np.random.choice([0, 1], p=p)
                 if flag:
