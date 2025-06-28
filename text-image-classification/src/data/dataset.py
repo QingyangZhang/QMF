@@ -68,13 +68,13 @@ class JsonlDataset(Dataset):
             _ = self.tokenizer(self.data[index]["text"])
 
             # Apply word replacement noise in test mode
-            if self.args.noise > 0.0 and self.mode=="test":
+            if self.args.noise_level > 0.0 and self.mode=="test":
                 # Random chance to apply noise
                 if np.random.choice([0, 1], p=[0.5, 0.5]):
                     wordlist = self.data[index]["text"].split(' ')
                     for i in range(len(wordlist)):
                         # Determine replacement probability
-                        replace_p = 0.1 * self.args.noise
+                        replace_p = 0.1 * self.args.noise_level
                         replace_flag = np.random.choice(
                             [0, 1], 
                             p=[1-replace_p, replace_p]
