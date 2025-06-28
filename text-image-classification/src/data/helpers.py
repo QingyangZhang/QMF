@@ -149,6 +149,7 @@ def get_data_loaders(args):
         os.path.join(args.data_path, args.task, "train.jsonl"),
         tokenizer,
         transforms,
+        "train",
         vocab,
         args,
     )
@@ -158,6 +159,7 @@ def get_data_loaders(args):
         os.path.join(args.data_path, args.task, "dev.jsonl"),
         tokenizer,
         transforms,
+        "train",
         vocab,
         args,
     )
@@ -195,6 +197,7 @@ def get_data_loaders(args):
         os.path.join(args.data_path, args.task, "test.jsonl"),
         tokenizer,
         test_transforms,
+        "test",
         vocab,
         args,
     )
