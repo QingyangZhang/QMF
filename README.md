@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 
-This project uses two types of multimodal datasets: **Text-Image Classification** and **RGBD Scene Recognition**.
+> This project uses two types of multimodal datasets: **Text-Image Classification** and **RGBD Scene Recognition**.
 
 ### Text-Image Classification
 
@@ -41,6 +41,20 @@ This project uses two types of multimodal datasets: **Text-Image Classification*
 
       * **Glove:** For the Bow model, download [glove.840B.300d.txt](https://www.kaggle.com/datasets/takuok/glove840b300dtxt) and place it in the `datasets/glove_embeds` folder.
       * **BERT:** For the Bert model, download [bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased) ([Google Drive Link](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view?usp=sharing)) and place it in the root folder `bert-base-uncased/`.
+
+> Make sure you have the following folder structure:
+
+text-image-classification/
+└── datasets/
+├── food101/
+│ ├── images/
+│ └── meta/
+├── MVSA_Single/
+│ ├── data/1.jpg, 1.txt, 2.jpg...
+│ └── dev.jsonl
+│ └── test.jsonl
+│ └── train.jsonl
+
 
 ### RGBD Scene Recognition
 
@@ -64,18 +78,16 @@ We provide the trained models for download. Please ensure you have the necessary
 
 ## Usage Example: Text-Image Classification
 
-Shell scripts for reference are provided in the `shells` folder.
-
 To run our method (**QMF**) on benchmark datasets:
 
 ```bash
-python train_qmf.py --task "${task}" --noise_level 0.0 --noise_type Gaussian \
+python train_qmf.py --alg qmf --noise_level 0.0 --noise_type Gaussian \
 ```
 
 To evaluate and get the reported accuracy in our paper:
 
 ```bash
-python train_qmf.py --task "${task}" --epoch 0 --noise_level 5.0 --noise_type Gaussian \
+python train_qmf.py --alg qmf --epoch 0 --noise_level 5.0 --noise_type Gaussian \
 ```
 
 To run **TMC** (Trusted Multi-View Classification, ICLR'21):
@@ -93,23 +105,6 @@ python train_tmc.py --batch_sz 16 --gradient_accumulation_steps 40 \
     --savedir "./saved/${task}" --name "${name}" --data_path "./datasets/" \
     --task "${task}" --task_type "${task_type}" --model "${model}" --num_image_embeds 3 \
     --freeze_txt 5 --freeze_img 3 --patience 5 --dropout 0.1 --lr 5e-05 --warmup 0.1 --max_epochs 100 --seed "${i}"
-```
-
-To run **Other Baseline Models** (e.g., `bow`, `bert`, `img`, `concatbert`, `concatbow`, `mmbt`):
-
-```bash
-# Set parameters
-task="MVSA_Single" # or "food101"
-task_type="classification"
-model="bert" # Choose from: "bow", "bert", "img", "concatbert", "concatbow", "mmbt"
-i=0 # Example seed
-
-name="${task}_${model}_model_run_${i}"
-
-python train.py --batch_sz 16 --gradient_accumulation_steps 40 \
-    --savedir "./saved/${task}" --name "${name}" --data_path "./datasets/" \
-    --task "${task}" --task_type "${task_type}" --model "${model}" --num_image_embeds 3 \
-    --freeze_txt 5 --freeze_img 3 --patience 5 --dropout 0.1 --lr 5e-05 --warmup 0.1 --max_epochs 100 --seed "${i}" --df true
 ```
 
 -----
@@ -161,6 +156,3 @@ Here are some interesting works related to this paper:
 ## Contact
 
 For any additional questions, feel free to email qingyangzhang@tju.edu.cn.
-
-```
-```
