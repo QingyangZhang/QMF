@@ -69,18 +69,13 @@ Shell scripts for reference are provided in the `shells` folder.
 To run our method (**QMF**) on benchmark datasets:
 
 ```bash
-# Set parameters
-task="MVSA_Single" # or "food101"
-task_type="classification"
-model="latefusion" # QMF uses latefusion as its base for dynamic fusion
-i=0 # Example seed
+python train_qmf.py --task "${task}" --noise_level 0.0 --noise_type Gaussian \
+```
 
-name="${task}_${model}_model_run_df_${i}"
+To evaluate and get the reported accuracy in our paper:
 
-python train_qmf.py --savedir "./saved/${task}" --name "${name}"
-     --data_path "./datasets/" --task "${task}" --task_type "${task_type}" --model "${model}" --num_image_embeds 3 \
-     --freeze_txt 5 --freeze_img 3 --patience 5 --dropout 0.1 --lr 5e-05 --warmup 0.1 \
-     --max_epochs 100 --seed "${i}" --df true --noise_level 0.0 --noise_type Gaussian \
+```bash
+python train_qmf.py --task "${task}" --epoch 0 --noise_level 5.0 --noise_type Gaussian \
 ```
 
 To run **TMC** (Trusted Multi-View Classification, ICLR'21):
