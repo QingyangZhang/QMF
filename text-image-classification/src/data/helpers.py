@@ -53,7 +53,7 @@ def get_SaltNoisetransforms(severity):
     return transforms.Compose(
         [
             transforms.Resize(256),
-            transforms.RandomApply([AddSaltPepperNoise(density=0.1, p=severity/10)], p=0.5),
+            transforms.RandomApply([AddSaltPepperNoise(density=0.1, p=severity/100)], p=0.5),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize(
@@ -185,11 +185,11 @@ def get_data_loaders(args):
         collate_fn=collate,
     )
 
-    if args.noise > 0.0:
+    if args.noise_level > 0.0:
         if args.noise_type=='Gaussian':
-            test_transforms=get_GaussianNoisetransforms(args.noise)
+            test_transforms=get_GaussianNoisetransforms(args.noise_level)
         elif args.noise_type=='Salt':
-            test_transforms = get_SaltNoisetransforms(args.noise)
+            test_transforms = get_SaltNoisetransforms(args.noise_level)
     else:
         test_transforms=transforms
 
