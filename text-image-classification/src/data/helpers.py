@@ -34,11 +34,26 @@ def get_transforms():
         ]
     )
 
-def get_GaussianNoisetransforms(rgb_severity):
+def get_GaussianNoisetransforms(severity):
     return transforms.Compose(
         [
             transforms.Resize(256),
-            transforms.RandomApply([AddGaussianNoise(amplitude=rgb_severity * 10)], p=0.5),
+            transforms.RandomApply([AddGaussianNoise(variance=severity * 10)], p=0.5),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize(
+                mean=[0.46777044, 0.44531429, 0.40661017],
+                std=[0.12221994, 0.12145835, 0.14380469],
+            ),
+        ]
+    )
+    
+
+def get_SaltNoisetransforms(severity):
+    return transforms.Compose(
+        [
+            transforms.Resize(256),
+            transforms.RandomApply([AddSaltPepperNoise(density=0.1, p=severity/10)], p=0.5),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize(
@@ -48,19 +63,7 @@ def get_GaussianNoisetransforms(rgb_severity):
         ]
     )
 
-def get_SaltNoisetransforms(rgb_severity):
-    return transforms.Compose(
-        [
-            transforms.Resize(256),
-            transforms.RandomApply([AddSaltPepperNoise(density=0.1, p=rgb_severity/10)], p=0.5),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.46777044, 0.44531429, 0.40661017],
-                std=[0.12221994, 0.12145835, 0.14380469],
-            ),
-        ]
-    )
+
 def get_labels_and_frequencies(path):
     label_freqs = Counter()
     data_labels = [json.loads(line)["label"] for line in open(path)]
@@ -182,12 +185,10 @@ def get_data_loaders(args):
         collate_fn=collate,
     )
 
-    if args.noise>0.0:
+    if args.noise > 0.0:
         if args.noise_type=='Gaussian':
-            print('Gaussian')
             test_transforms=get_GaussianNoisetransforms(args.noise)
         elif args.noise_type=='Salt':
-            print("Salt")
             test_transforms = get_SaltNoisetransforms(args.noise)
     else:
         test_transforms=transforms
